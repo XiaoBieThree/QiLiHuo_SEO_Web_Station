@@ -1,6 +1,6 @@
 # qilihuo_demo
 
-> the_great_seo_business_web_station
+> the_great_seo_business_web_station with VUE
 
 ## Build Setup
 
