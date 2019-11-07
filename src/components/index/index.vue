@@ -114,7 +114,7 @@
                 </div>
               </el-col>
             </el-row>
-            <el-row>
+            <!-- <el-row>
               <el-col :span="6">
                 <div class="hb-first-application_center-title">
                   <p>企力火应用中心</p>
@@ -138,7 +138,7 @@
                   </el-row>
                 </div>
               </el-col>
-            </el-row>
+            </el-row> -->
           </el-tab-pane>
           <el-tab-pane label="最新活动" name="second" class="hb-tabs">
             <router-view></router-view>
@@ -176,7 +176,7 @@
                       <el-button size="small">查看详情</el-button>
                     </el-badge>
                     <el-badge value="有惊喜" class="item">
-                      <el-button size="small">立即咨询</el-button>
+                      <el-button type="danger" size="small">立即咨询</el-button>
                     </el-badge>
                   </p>
                 </div>

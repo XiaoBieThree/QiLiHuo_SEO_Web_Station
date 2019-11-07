@@ -148,7 +148,6 @@ textarea {
 #out-side {
   width: 100%;
   height: 3300px;
-  // min-height: 1000px;
   background-color: #eee;
   position: relative;
   user-select: none;
@@ -337,12 +336,13 @@ textarea {
     }
 
     .hb-bottom {
-      margin-top: 20px;
+      // margin-top: 20px;
+      margin: 20px;
       // 企立火应用中心
       .case-content-bg {
         padding-bottom: 0;
         height: 665px;
-        background: url("../../assets/shaxiang/bg.png") no-repeat;
+        // background: url("../../assets/shaxiang/bg.png") no-repeat;
         background-size: cover;
         background-position: center 50%;
         -webkit-transition: all 1s;
@@ -354,24 +354,24 @@ textarea {
 
       .case-content-info {
         background-position: center 10%;
-        padding: 80px 0;
+        padding: 40px 0;
         height: 1050px;
       }
 
       .case-box {
-        width: 1180px;
         margin: 0 auto;
         position: relative;
         >:last-child {
           position: absolute;
-          margin-top: 40px;
+          // margin-top: 40px;
+          margin: 40px 65px;
           top: 492px;
         }
       }
 
       .case-box-title {
         text-align: center;
-        color: #fff;
+        // color: #fff;
         font-weight: normal;
         padding-bottom: 40px;
 
@@ -386,7 +386,7 @@ textarea {
         span {
           font-size: 16px;
           opacity: .6;
-          color: #fff;
+          // color: #fff;
           text-align: center;
         }
       }
@@ -395,6 +395,7 @@ textarea {
         cursor: pointer;
         width: 280px;
         height: 390px;
+        border-radius: 5px 5px 0 0;
         float: left;
         display: block;
         margin: 20px 0 0 0;
@@ -404,18 +405,53 @@ textarea {
         -ms-transition: all 0.3s;
         -o-transition: all 0.3s;
         transition: all 0.3s;
-        background-image: -webkit-linear-gradient(bottom, rgba(72, 72, 79, 0.3) 0%, #00316d 100%);
-        background-image: -moz-linear-gradient(bottom, rgba(72, 72, 79, 0.3) 0%, #00316d 100%);
-        background-image: -moz-linear-gradient(to top, rgba(72, 72, 79, 0.3) 0%, #00316d 100%);
-        background-image: -o-linear-gradient(to top, rgba(72, 72, 79, 0.3) 0%, #00316d 100%);
-        background-image: linear-gradient(to top, rgba(72, 72, 79, 0.3) 0%, #00316d 100%);
+        background-image: -webkit-linear-gradient(bottom, rgba(72, 72, 79, 0.3) 0%, #e2702c 100%);
+        background-image: -moz-linear-gradient(bottom, rgba(72, 72, 79, 0.3) 0%, #e2702c 100%);
+        background-image: -moz-linear-gradient(to top, rgba(72, 72, 79, 0.3) 0%, #e2702c 100%);
+        background-image: -o-linear-gradient(to top, rgba(72, 72, 79, 0.3) 0%, #e2702c 100%);
+        background-image: linear-gradient(to top, rgba(72, 72, 79, 0.3) 0%, #e2702c 100%);
         background-repeat: repeat
       }
 
-      .case-wrapper .case-item:hover {
-        margin-top: 0;
-        height: 430px;
-        background-color: #2F4C90;
+      .case-wrapper {
+        width: 1180px;
+        margin: 0 auto;
+        .case-item+.case-item {
+          margin-left: 20px;
+        }
+        .case-item .case-item-doc {
+          padding: 20px 30px;
+          width: 280px;
+          bottom: 0;
+          position: absolute;
+          background: #27272e;
+          border-radius: 0 0 5px 5px;
+          p {
+            line-height: 30px;
+            margin: 0;
+            font-size: 14px;
+            color: #999999;
+            .el-badge {
+              margin-right: 15px;
+              margin-left: 10px;
+            }
+            .item {
+              margin-top: 10px;
+              margin-right: 11px;
+            }
+          }
+          a+a {
+            text-align: center;
+          }
+        }
+        .case-item a:hover {
+          text-decoration: underline;
+        }
+        .case-item:hover {
+          margin-top: 0;
+          height: 430px;
+          background-color: #FF3333;
+        }
       }
 
       .case-item-bg1 {
@@ -440,7 +476,7 @@ textarea {
         width: 100px;
         height: 100px;
         border-radius: 50px;
-        margin-top: 50px;
+        margin-top: 40px;
       }
 
       .case-item-title {
@@ -453,7 +489,7 @@ textarea {
 
       .case-item-text {
         font-size: 14px;
-        color: #999999;
+        color: #fff;
         line-height: 24px;
         height: calc(100% - 338px);
         margin: 0 30px;
@@ -461,44 +497,9 @@ textarea {
       }
 
       .case-item-doc {
-        padding: 20px 30px;
-        width: 280px;
-        bottom: 0;
-        position: absolute;
-        background: #27272e;
-
-        p {
-          line-height: 30px;
-          margin: 0;
-          font-size: 14px;
-          color: #999999;
-          .el-badge {
-            margin-right: 15px;
-            margin-left: 10px;
-          }
-          .item {
-            margin-top: 10px;
-            margin-right: 11px;
-          }
-        }
-      }
-      
-      .case-wrapper {
-        .case-item+.case-item {
-          margin-left: 20px;
-        }
         
-        .case-item .case-item-doc a+a {
-          text-align: center;
-        }
-
-        .case-item a:hover {
-          text-decoration: underline;
-        }
       }
     }
-
-
   }
 
   .h-footer {
