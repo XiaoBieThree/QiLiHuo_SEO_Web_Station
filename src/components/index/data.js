@@ -151,12 +151,43 @@ let hb_box_card = [
   }
 ]
 let contact_us = ['客服电话4008-777-818转3', '售前电话4008-777-818转1', '售后QQ4008-777-818转2', '备案帮助4008-777-818转3', '商务合作18321567269', '违规投诉18321567269']
+let routerData = [
+  {
+    id: 'first',
+    title: 'home'
+  },{
+    id: 'second',
+    title: 'latestActivity'
+  },{
+    id: 'third',
+    title: 'intermediary'
+  }
+]
+let latest_activity_card = [
+  {
+    id: 1,
+    title: '会员精准识别',
+    contant: '基于人脸1：N对比技术，实现会员进店精准识别，依据会员性别，年龄及来访记录进行个性化迎宾及营销内容展现'
+  },
+  {
+    id: 2,
+    title: '会员精准识别',
+    contant: '基于人脸1：N对比技术，实现会员进店精准识别，依据会员性别，年龄及来访记录进行个性化迎宾及营销内容展现'
+  },
+  {
+    id: 3,
+    title: '会员精准识别',
+    contant: '基于人脸1：N对比技术，实现会员进店精准识别，依据会员性别，年龄及来访记录进行个性化迎宾及营销内容展现'
+  },
+]
 let data = {
   notice,
   help_document,
   popular_product,
   contact_us,
   blogroll,
-  hb_box_card
+  hb_box_card,
+  routerData,
+  latest_activity_card
 }
 export default data

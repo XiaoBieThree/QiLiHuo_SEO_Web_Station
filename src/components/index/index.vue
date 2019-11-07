@@ -44,76 +44,7 @@
         <el-tabs v-model="activeName" @tab-click="tabsClick">
           <!-- home-body 简写hb -->
           <el-tab-pane label="首页" name="first" class="hb-tabs">
-            <el-row>
-              <el-col :span="5">
-                <!-- <i class="el-icon-s-unfold"></i> -->
-                <h5 class="hb-h5">云市场分类</h5>
-                <el-menu
-                  default-active="2"
-                  class="el-menu-vertical-demo"
-                  @open="handleOpen"
-                  @close="handleClose"
-                  background-color="#000"
-                  text-color="#d3dce6"
-                  active-text-color="#fff"
-                >
-                  <el-submenu index="1">
-                    <template slot="title">
-                      <i class="el-icon-position"></i>
-                      <span class="hb-title-span">AI人工智能</span>
-                    </template>
-                    <el-menu-item index="1-1">电销机器人</el-menu-item>
-                    <el-menu-item index="1-2">人机协作系统</el-menu-item>
-                    <el-menu-item index="1-3">自动寻客系统</el-menu-item>
-                  </el-submenu>
-                  <el-submenu index="2">
-                    <template slot="title">
-                      <i class="el-icon-position"></i>
-                      <span class="hb-title-span">PASS云销系统</span>
-                    </template>
-                    <el-menu-item index="2-1">智能线上客服</el-menu-item>
-                    <el-menu-item index="2-2">AI加装小程序</el-menu-item>
-                    <el-menu-item index="2-3">微信机器人</el-menu-item>
-                  </el-submenu>
-                  <el-submenu index="3">
-                    <template slot="title">
-                      <i class="el-icon-position"></i>
-                      <span class="hb-title-span">搜索云计算</span>
-                    </template>
-                    <el-menu-item index="3-1">企力火整站优化</el-menu-item>
-                    <el-menu-item index="3-2">企力火新站优化</el-menu-item>
-                    <el-menu-item index="3-3">企力火万词霸屏</el-menu-item>
-                  </el-submenu>
-                  <el-submenu index="4">
-                    <template slot="title">
-                      <i class="el-icon-position"></i>
-                      <span class="hb-title-span">软件开发服务</span>
-                    </template>
-                    <el-menu-item index="4-1">百度/微信小程序建设</el-menu-item>
-                    <el-menu-item index="4-2">移动应用(app)建设</el-menu-item>
-                  </el-submenu>
-                </el-menu>
-              </el-col>
-              <el-col :span="19">
-                <div class="nav-image">
-                  <img src="../../assets/home/nav-image.png" alt />
-                </div>
-                <div class="hb-cards">
-                  <el-card
-                    class="hb-box-card"
-                    shadow="hover"
-                    v-for="(item, index) in hb_box_card"
-                    :key="index"
-                  >
-                    <div class="hb-box-card-f">{{item.title}}</div>
-                    <div class="hb-box-card-s">{{item.contant}}</div>
-                    <div class="hb-box-card-t">
-                      <img src="../../assets/home/1571905563558.png" />
-                    </div>
-                  </el-card>
-                </div>
-              </el-col>
-            </el-row>
+            <router-view></router-view>
             <!-- <el-row>
               <el-col :span="6">
                 <div class="hb-first-application_center-title">
@@ -140,10 +71,12 @@
               </el-col>
             </el-row> -->
           </el-tab-pane>
-          <el-tab-pane label="最新活动" name="second" class="hb-tabs">
+          <el-tab-pane label="最新活动" name="second" class="hb-tabs hb-tabs-two">
             <router-view></router-view>
           </el-tab-pane>
-          <el-tab-pane label="媒介" name="third" class="hb-tabs"></el-tab-pane>
+          <el-tab-pane label="媒介" name="third" class="hb-tabs">
+            <router-view></router-view>
+          </el-tab-pane>
           <el-tab-pane label="运维开发" name="fourth" class="hb-tabs">运维开发</el-tab-pane>
           <el-tab-pane label="云市场" name="fifth" class="hb-tabs">云市场</el-tab-pane>
           <el-tab-pane label="定价" name="sixth" class="hb-tabs">定价</el-tab-pane>
@@ -176,7 +109,7 @@
                       <el-button size="small">查看详情</el-button>
                     </el-badge>
                     <el-badge value="有惊喜" class="item">
-                      <el-button type="danger" size="small">立即咨询</el-button>
+                      <el-button type="danger" size="small" @click="advisoryOnClick">立即咨询</el-button>
                     </el-badge>
                   </p>
                 </div>
@@ -243,6 +176,9 @@
       </div>
       <div class="hf-end">© {{this.year}} 上海众柴软件科技有限公司 使用百度前必读 京ICP证030173号</div>
     </div>
+    <div class="advisory">
+      
+    </div>
   </div>
 </template>
 
@@ -251,27 +187,47 @@ import moment from "moment";
 import data from "./data.js";
 export default {
   data() {
+    let activeHash = window.location.hash.toString()
+    activeHash = activeHash.slice('2')
+    let hash_router = data.routerData.filter((item, index) => {
+      return item.title === activeHash
+    })
     return {
       input: "",
-      activeName: "first",
+      activeName: hash_router ? hash_router[0].id : 'first',
       year: moment().format("YYYY"),
       notice: data.notice,
       help_document: data.help_document,
       popular_product: data.popular_product,
       contact_us: data.contact_us,
       blogroll: data.blogroll,
-      hb_box_card: data.hb_box_card
+      isAdvisoryShow: false,
+      test:hash_router.toString()
     };
   },
   methods: {
     tabsClick(tab, event) {
-      console.log(tab, event);
+      if(tab.index == 0) {
+        this.$router.push({path: '/home'})
+      } else if (tab.index == 1) {
+        this.$router.push({path: '/latestActivity'})
+      } else if (tab.index == 2) {
+        this.$router.push({path: '/intermediary'})
+      }
     },
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath);
-    },
-    handleClose(key, keyPath) {
-      console.log(key, keyPath);
+    advisoryOnClick() {
+      // this.$router.push('/advisory')
+      this.isAdvisoryShow = true
+      let parmas = {
+        yskjname: 'test01',    // 您的姓名
+        yskjtel: 15012341234,    // 报价接收电话
+        yskjid: '061015113201289944484cc2d3b2d5d5ade25c5842004093bf55bbad370a8fcad1d09b005e278c2',
+        yskjprotype: 5,    // 选择您要开发的项目类型
+        yskjproxs: 1,    // 开发形式
+        yskjprotime: 3,    // 预期的开发工期
+        yskjmodecode: 4,    // 
+      }
+      axios.get('http://aitel.wscapp.cn/atels/interconnect/addhulian',parmas)
     }
   }
 };

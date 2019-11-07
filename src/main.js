@@ -5,7 +5,7 @@ import App from './App'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 // import moment from 'moment';
-import router from './router'
+import router from './router/router'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI);
