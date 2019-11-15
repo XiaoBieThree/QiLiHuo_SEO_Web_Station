@@ -189,11 +189,14 @@ export default {
   data() {
     let activeHash = window.location.hash.toString()
     activeHash = activeHash.slice('2')
+    // 匹配路由确定tabs选中项
     let hash_router = data.routerData.filter((item, index) => {
       return item.title === activeHash
     })
+    
     return {
       input: "",
+      isTabsClickLoading: false,
       activeName: hash_router ? hash_router[0].id : 'first',
       year: moment().format("YYYY"),
       notice: data.notice,
@@ -207,13 +210,18 @@ export default {
   },
   methods: {
     tabsClick(tab, event) {
-      if(tab.index == 0) {
-        this.$router.push({path: '/home'})
-      } else if (tab.index == 1) {
-        this.$router.push({path: '/latestActivity'})
-      } else if (tab.index == 2) {
-        this.$router.push({path: '/intermediary'})
-      }
+      this.isTabsClickLoading = true
+      this.$router.push({ path: '/index/loading' })
+      setTimeout(() => {
+        this.isTabsClickLoading = false
+        if(tab.index == 0) {
+          this.$router.push({ path: '/index/home' })
+        } else if (tab.index == 1) {
+          this.$router.push({ path: '/index/latestActivity' })
+        } else if (tab.index == 2) {
+          this.$router.push({ path: '/index/intermediary' })
+        }
+      }, 2000);
     },
     advisoryOnClick() {
       // this.$router.push('/advisory')
